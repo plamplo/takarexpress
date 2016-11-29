@@ -1,0 +1,14 @@
+block menutab
+  div.off-canvas.position-left#offcanvas(data-off-canvas='')
+    ul.menu.vertical
+      li
+        h4
+          a(onclick="window.location.href='/producer/#{producerID}/'") หน้าแรก
+      li
+        h4
+          a(onclick="window.location.href='/producer/#{producerID}/list'") รายการผลิตภัณฑ์
+      li
+        h4
+          a(href="#") สถิติ
+    button.close-button(aria-label="Close menu" type="button" data-close)
+      span(aria-hidden="true")&times;

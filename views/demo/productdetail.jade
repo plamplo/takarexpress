@@ -1,0 +1,131 @@
+extends layout
+block content
+    .off-canvas-wrapper-inner(data-off-canvas-wrapper='')
+      include menutab
+      div.offf-canvas-content(data-off-canvas-content)
+        include titlebar
+      br
+      section.striped(role='itemfreq')
+        .row
+          .small-12.medium-12.large-12.columns
+            .row.hide-for-small-only
+              .small-6.medium-6.large-6.columns
+                img(src=data.product_pic, alt='Local food')
+              .small-6.medium-6.large-6.columns
+                .row
+                  h2= data.product_name
+                .row
+                  .medium-9.large-9.columns
+                    h4 price
+                  .medium-3.large-3.columns(style="margin-top:0px;")
+                    h4= data.price
+                .row
+                  .medium-9.large-9.columns
+                    h4 review
+                  .medium-1.large-1.columns(style="margin-top:7px;")
+                    p= data.product_rate
+                  .medium-2.large-2.columns(style="margin-top:10px;")
+                    p.fa.fa-star
+                .row
+                  .medium-5.large-6.columns
+                    h5 จำนวนสินค้า
+                  .medium-2.large-2.columns
+                    a.button.secondary -
+                  .medium-2.large-2.columns
+                    h4= data.product_stock
+                  .medium-2.large-2.columns
+                    a.button.secondary +
+                .row
+                  center
+                    .medium-6.columns
+                      h4.button หยิบใส่ตระกร้า
+                    .medium-6.columns
+                      h4.button.alert ซื้อสินค้า
+
+            .row.hide-for-small-only
+              .medium-6.columns
+                h2 รายละเอียดผู้ขาย
+                h3= data.producer_name
+                h3= data.producer_addr
+              .medium-6.columns
+                #map(style="heigth: 100%;")
+                //- iframe(width="80%" heigt="300px;" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBHKu4PX2Ib8l4BRjpYry2b-cJXw1Rsb18&q=#{data.producer_name}&markers=#{data.producer_latlong}&center=#{data.producer_latlong}")
+            .rows.show-for-small-only
+              img(src=data.product_pic, alt='Local food')
+              br
+              .row
+                h1= data.product_name
+              .row
+                .small-6.columns
+                  h4 price
+                .small-3.columns
+                  h4= data.price
+              .row
+                .small-9.columns
+                  h4 review
+                .small-1.columns(style="margin-top:0px;")
+                  p= data.product_rate
+                .small-2.columns(style="margin-top:4px;")
+                  p.fa.fa-star
+              .row
+                .small-6.columns
+                  h4 จำนวนสินค้า
+                .small-2.medium-1.columns
+                  a.button.secondary -
+                .small-2.medium-1.columns.center
+                  h4= data.product_stock
+                .small-2.medium-1.columns
+                  a.button.secondary +
+              .row
+                center
+                  .small-6.columns
+                    h4.button หยิบใส่ตระกร้า
+                  .small-6.columns
+                    h4.button.alert ซื้อสินค้า
+              h2 รายละเอียดผู้ขาย
+              h3= data.producer_name
+              h3= data.producer_addr
+              #map2
+              //- iframe(src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBHKu4PX2Ib8l4BRjpYry2b-cJXw1Rsb18&q=Space+Needle,Seattle+WA")
+        include footer
+      script(src='/javascripts/vendor/jquery.js')
+      script(src='/javascripts/vendor/what-input.js')
+      script(src='/javascripts/vendor/foundation.js')
+      script(src='/javascripts/app.js')
+      script(async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBHKu4PX2Ib8l4BRjpYry2b-cJXw1Rsb18&callback=initMap")
+      style.
+        #map {
+          height: 400px;
+          width: 100%;
+        }
+        #map2 {
+          height: 400px;
+          width: 100%;
+        }
+      script.
+        $(document).ready(function() {
+          $('a').on('click', function(e) {
+            e.preventDefault();
+          });
+        });
+        function initMap() {
+            var string = "#{data.producer_latlong}"
+          console.log(string.split(","))
+          var uluru = {lat: parseFloat(string.split(",")[0]), lng: parseFloat(string.split(",")[1])};
+          var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 10,
+            center: uluru
+          });
+          var marker = new google.maps.Marker({
+            position: uluru,
+            map: map
+          });
+          var map2 = new google.maps.Map(document.getElementById('map2'), {
+            zoom: 10,
+            center: uluru
+          });
+          var marker2 = new google.maps.Marker({
+            position: uluru,
+            map: map2
+          });
+        }

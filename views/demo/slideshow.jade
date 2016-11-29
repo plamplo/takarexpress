@@ -1,0 +1,46 @@
+block slideshow
+  section.striped
+  div.row
+    div.small-12.medium-12.large-12.columns
+      div.orbit(role='region', aria-label='Slide Item', data-orbit='')
+        ul.orbit-container
+          button.orbit-previous.show-for-medium
+            span.show-for-sr Previous Slide
+            | ◀︎
+          button.orbit-next.show-for-medium
+            span.show-for-sr Next Slide
+            | ▶︎
+          li.is-active.orbit-slide
+            figure.orbit-image
+              img.show-for-large(src='/images/mockup/xSwimmingPool_CAG_Carousel_desktop_1920x480.jpg', alt='Swimming Pool')
+              img.show-for-medium-only(src='/images/mockup/xSwimmingpool_CAG_Carousel_tablet_1150x430.jpg', alt='Swimming Pool')
+              img.show-for-small-only(src='/images/mockup/xSwimmingpool_CAG_Carousel_mobile_736x280.jpg', alt='Swimming Pool')
+              //figcaption.orbit-caption Stretch out and soak in the sun at our rooftop pool before your flight.
+          li.orbit-slide
+            figure.orbit-image
+              img(src='/images/mockup/x5,P20Instagram-worth,P20spots,P20at,P20Changi,P20Airport-Desktop.jpg', alt='Sunflower')
+              //figcaption.orbit-caption Strike a pose at these stunning Instagram-worthy spots you can find at Changi!
+          li.orbit-slide
+            figure.orbit-image
+              img(src='/images/mockup/xChangi_Banner_Xmas_desktop_1920x480.jpg', alt='Christmas')
+              //figcaption.orbit-caption Enjoy big discounts on your gift shopping at iShopChangi.com
+          li.orbit-slide
+            figure.orbit-image
+              img(src='/images/mockup/xLittle,P20Guilin,P20-,P20CA.com,P20Carousel,P20,28Desktop,29.jpg', alt='Guilin')
+              //figcaption.orbit-caption Watch a movie under the stars and even visit an abandoned estate!
+          li.orbit-slide
+            figure.orbit-image
+              img(src='/images/mockup/xskytrax_2016_1920x480_01.jpg', alt='Airport')
+              //figcaption.orbit-caption Vote for your favourite airport now
+        nav.orbit-bullets
+          button.is-active(data-slide='0')
+            span.show-for-sr First slide details.
+            span.show-for-sr Current Slide
+          button(data-slide='1')
+            span.show-for-sr Second slide details.
+          button(data-slide='2')
+            span.show-for-sr Third slide details.
+          button(data-slide='3')
+            span.show-for-sr Fourth slide details.
+          button(data-slide='4')
+            span.show-for-sr Fifth slide details.

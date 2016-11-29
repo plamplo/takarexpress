@@ -1,0 +1,72 @@
+block titlebar
+  //- small view
+  div.title-bar.show-for-small-only
+    div.title-bar-left
+      button.menu-icon(type="button" data-open="offcanvas")
+      span.title-bar-title(onclick="window.location.href='/'" style="font-size:2em;") Takraexpress
+    div.title-bar-right
+      button.fa.fa-ellipsis-v(style="font-size:2em;")
+  div.show-for-small-only.small-12.columns
+    br
+    form
+      .input-group
+        label.show-for-sr(for='searchitem') Search
+        input#searchitem.input-group-field(type='search')
+        .input-group-button.searchbar
+          button.button(type='submit') Go
+
+  //- desktop view
+  header.site-header.show-for-large(role='banner')
+    .row
+      .large-4.columns
+        h1(onclick="window.location.href='/'") Takraexpress
+      .large-5.columns(style="margin-top:17")
+        form
+          .input-group
+            label.show-for-sr(for='searchitem') Search
+            input#searchitem.input-group-field(type='search')
+            .input-group-button.searchbar
+              button.button(type='submit') Search
+      .large-3.columns(style="margin-top:17")
+        .button-group.float-right
+          a.button(data-toggle='login-dropdown' style="background:#043657") Login
+          #login-dropdown.dropdown-pane(data-dropdown='', data-hover='true', data-hover-pane='true')
+            form
+              .row
+                .small-12.medium-12.large-12.columns
+                  label
+                    | Username
+                    input(type='text', placeholder='Startrek', required='')
+                  label
+                    | Password
+                    input(type='password', placeholder='Into the Darkness', required='')
+              button.button(type='submit' style="background:#043657") Login
+          a.button(data-toggle='cart-dropdown' style="background:#043657") Cart
+          #cart-dropdown.dropdown-pane(data-dropdown='', data-hover='true', data-hover-pane='true' style="background:#043657")
+            form
+              .row
+                .small-12.medium-12.large-12.columns
+                  h4 Nothing here!
+          a.button(style="background:#043657") Language
+          
+  //- table and desktop view
+  nav.top-nav.show-for-medium
+    .row
+      .small-12.medium-12.large-12.columns
+        ul.menu
+          li
+            a(onclick="window.location.href='/'") Trakaexpress
+          li
+            a(href='#') Health & Nutrition
+          li
+            a(href='#') Beauty
+          li
+            a(href='#') Clothes
+          li
+            a(href='#') Home Store
+          li
+            a(href='#') Electronics
+          li
+            a(href='#') Partner Stores
+          li
+            a(href='#') All Departments

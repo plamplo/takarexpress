@@ -1,0 +1,43 @@
+extends layout
+block content
+    .off-canvas-wrapper-inner(data-off-canvas-wrapper='')
+        include menutab
+        div.offf-canvas-content(data-off-canvas-content)
+          include titlebar
+          .row
+            .columns
+              h1 #{title} #{data[0].producer_name}
+          .row
+            .small-12.columns
+              a.button(onclick="window.location.href='/producer/#{producerID}/productadd'") เพิ่มผลิตภัณฑ์
+          .row
+            .columns
+              table(role="grid")
+                thead
+                  tr
+                    th(width="5%") #
+                    th ชื่อผลิตภัณฑ์
+                    th จำนวน
+                    th &nbsp;
+                    th &nbsp;
+                tbody
+                  - each item, i in data
+                    tr
+                      td= i+1
+                      td= item.product_name
+                      td(align="right")= item.product_stock
+                      td(align="center")
+                        a.button.info(style="margin-top:15px" onclick="window.location.href='/producer/#{producerID}/product/#{item.product_id}'") แก้ไข
+                      td(align="center")
+                        a.button.alert(style="margin-top:15px") ลบ
+
+    script(src='/javascripts/vendor/jquery.js')
+    script(src='/javascripts/vendor/what-input.js')
+    script(src='/javascripts/vendor/foundation.js')
+    script(src='/javascripts/app.js')
+    script.
+      $(document).ready(function() {
+        $('a').on('click', function(e) {
+          e.preventDefault();
+        });
+      });

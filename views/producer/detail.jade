@@ -1,0 +1,46 @@
+extends layout
+block content
+    .off-canvas-wrapper-inner(data-off-canvas-wrapper='')
+        include menutab
+        div.offf-canvas-content(data-off-canvas-content)
+          include titlebar
+          .row
+            .columns
+              h1 #{title} #{data.product_name}
+          .row
+            .small-12.medium-6.medium-offset-3.columns
+              img(src="#{data.product_pic}")
+          .row
+            .columns.small-12.medium-8.medium-offset-2
+              table
+                tr
+                  td ชื่อผลิตภัณฑ์
+                  td
+                    input(style="margin-top:15px" type="text" value="#{data.product_name}")
+                tr
+                  td รายละเอียดผลิตภัณฑ์
+                  td
+                    input(style="margin-top:15px" type="text" value="#{data.product_detail}")
+                tr
+                  td หมวดหมู่ผลิตภัณฑ์
+                  td
+                    input(style="margin-top:15px" type="text" value="#{data.price}")
+                tr
+                  td ราคา
+                  td
+                    input(style="margin-top:15px" type="text" value="#{data.product_des}")
+                tr(align="center")
+                  td
+                    a.button.alert(onclick="window.location.href='/producer/#{producerID}/list'") ย้อนกลับ
+                  td
+                    a.button.success บันทึก
+      script(src='/javascripts/vendor/jquery.js')
+      script(src='/javascripts/vendor/what-input.js')
+      script(src='/javascripts/vendor/foundation.js')
+      script(src='/javascripts/app.js')
+      script.
+        $(document).ready(function() {
+          $('a').on('click', function(e) {
+            e.preventDefault();
+          });
+        });

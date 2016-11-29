@@ -1,0 +1,40 @@
+extends layout
+block content
+    .off-canvas-wrapper-inner(data-off-canvas-wrapper='')
+        include menutab
+        div.offf-canvas-content(data-off-canvas-content)
+          include titlebar
+          br
+          include slideshow
+          include event
+          section.striped(role='itemfreq')
+            .row
+              .small-12.medium-12.large-12.columns
+                .row
+                  .small-6.medium-6.large-6.columns
+                    h2.page-title Promotion
+                  .small-2.medium-2.large-2.columns
+                    h4.right(style="margin-top:20px;")
+                      a(onclick="window.location.href='/product'") seeall
+                .row.small-up-2.medium-up-3.large-up-4(data-equalizer='', data-equalize-by-row='true')
+                  - each item, i in data
+                    .columns
+                      .callout
+                        a(href='#')
+                          img(src=item.product_pic, alt='Local food' height="233" width="233")
+                        .caption.text-left
+                          h3= item.product_name
+                          p= item.product_des
+                          a(onclick="window.location.href='/product/#{item.product_id}'") BuyNow
+
+            include footer
+          script(src='/javascripts/vendor/jquery.js')
+          script(src='/javascripts/vendor/what-input.js')
+          script(src='/javascripts/vendor/foundation.js')
+          script(src='/javascripts/app.js')
+          script.
+            $(document).ready(function() {
+              $('a').on('click', function(e) {
+                e.preventDefault();
+              });
+            });

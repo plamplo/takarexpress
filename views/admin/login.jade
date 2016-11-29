@@ -1,0 +1,44 @@
+html
+  head
+    script(src='/javascripts/vendor/jquery.js')
+    script(src='/javascripts/app.js')
+
+    script.
+        $(document).ready(function(){
+            $("#submit").click(function(){
+                if($("#email").val()=="")
+                {
+                    $("#email").focus();
+                    return false;
+                }
+                if($("#password").val()=="")
+                {
+                    $("#password").focus();
+                    return false;
+                }
+                var adminID = { email : $("#email").val(), password : $("#password").val() };
+                $.ajax({
+                    url:"http://takraexpress.herokuapp.com/auth/sign_in",
+                    type:"POST",
+                    dataType: "json",
+                    contentType: "application/json",
+                    cache:false,
+                    data: JSON.stringify(adminID),
+                    success: function(res, status, jqXHR) {
+                      console.log(jqXHR.getAllResponseHeaders());
+                    },
+                    error:function(jqXHR, textStatus, errorThrown)
+                    {
+                        alert(jqXHR + textStatus + errorThrown);
+                    }
+                });
+            });
+        });
+
+  body
+    | Email:
+    input#email(type='text', value='')
+    br
+    |          Password:
+    input#password(type='text', value='')
+    button#submit Log in
