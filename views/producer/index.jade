@@ -1,36 +1,52 @@
 extends layout
 block content
     .off-canvas-wrapper-inner(data-off-canvas-wrapper='')
-        include menutab
-        div.offf-canvas-content(data-off-canvas-content)
-          include titlebar
+      script.
+        $(document).ready(function() {
+          $('.top-nav').on('sticky.zf.stuckto:top', function(){
+            $(this).addClass('shrink');
+          }).on('sticky.zf.unstuckfrom:top', function(){
+            $(this).removeClass('shrink');
+          })
+        });
 
-          h1 รายการผลิตภัณฑ์
-          section.striped(role='itemfreq')
-              .row.small-up-1.medium-up-2.large-up-3(data-equalizer='', data-equalize-by-row='true')
-                - each item, i in data
+        function check_text_length(text, index){
+          if(text.length < 20){
+            console.log("product_name"+index);
+            document.getElementById("product_name_"+index).innerHTML = text;
+          }else{
+            document.getElementById("product_name_"+index).innerHTML = text.substr(0, 22)+"...";
+          }
+        }
+      include menutab
+      div.offf-canvas-content(data-off-canvas-content)
+        include titlebar
 
-                  .columns
-                    .callout
-                      center
-                        a(href='#')
-                          img(src=item.product_pic, alt='Local food' height="233" width="233")
-                      .caption.text-left
-                        br
-                        .row.columns
-                          h3= item.product_name
-                        .row
-                          .small-4.medium-5.large-5.columns
-                            h3(style="margin-top:7px;") จำนวน
-                          .small-2.medium-2.large-2.columns
-                            a.button.secondary -
-                          .small-2.medium-2.large-2.columns
-                            h4(style="margin-top:10px;")= item.product_stock
-                          .small-3.medium-2.large-2.columns
-                            a.button.secondary +
-                        .row.columns
-                          center
-                            a.button บันทึกค่า
+        h1(style="margin-top:5px;") รายการผลิตภัณฑ์
+        section.striped(role='itemfreq' margin-top: 5px;)
+            .row.small-up-1.medium-up-2.large-up-3(data-equalizer='', data-equalize-by-row='true')
+              - each item, i in data
+                .columns
+                  .callout
+                    center
+                      a(href='#')
+                        img(src=item.product_pic, alt='Local food' style="width:100%; height:200px" onload="check_text_length('#{item.product_name}', #{i})")
+                    .caption.text-left
+                      br
+                      .row.columns
+                        p(id="product_name_#{i}")
+                      .row
+                        .small-4.medium-4.large-4.columns
+                          h4(style="margin-top:0px;") จำนวน
+                        .small-2.medium-2.large-2.columns(style="margin-top:-5px;")
+                          a.button.alert -
+                        .small-2.medium-2.large-2.columns
+                          h4(style="margin-top:0px;")= item.product_stock
+                        .small-3.medium-3.large-3.columns(style="margin-top:-5px;")
+                          a.button.success +
+                      .row
+                        .columns.small-offset-7
+                          a.button บันทึกค่า
 
     script(src='/javascripts/vendor/jquery.js')
     script(src='/javascripts/vendor/what-input.js')
@@ -42,38 +58,4 @@ block content
         $('a').on('click', function(e) {
           e.preventDefault();
         });
-      });
-
-    script.
-      var ctx = document.getElementById('myChart').getContext('2d');
-      var myChart = new Chart(ctx, {
-      type: 'line',
-      data: {
-        labels: ['M', 'T', 'W', 'T', 'F', 'S', 'S'],
-        datasets: [{
-          label: 'apples',
-          data: [12, 19, 3, 17, 6, 3, 7],
-          backgroundColor: "rgba(153,255,51,0.4)"
-        }, {
-          label: 'oranges',
-          data: [2, 29, 5, 5, 2, 3, 10],
-          backgroundColor: "rgba(255,153,0,0.4)"
-        }]
-      }
-      });
-      var ctx = document.getElementById("myChartbar").getContext('2d');
-      var myChart = new Chart(ctx, {
-        type: 'line',
-        data: {
-          labels: ["M", "T", "W", "R", "F", "S", "S"],
-          datasets: [{
-            label: 'apples',
-            data: [12, 19, 3, 17, 28, 24, 7],
-            backgroundColor: "rgba(153,255,51,0.4)"
-          }, {
-            label: 'oranges',
-            data: [30, 29, 5, 5, 20, 3, 10],
-            backgroundColor: "rgba(255,153,0,0.4)"
-          }]
-        }
       });

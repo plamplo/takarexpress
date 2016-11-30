@@ -1,0 +1,509 @@
+<!doctype html>
+<html class="no-js" lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="css/foundation.css">
+    <style>
+    @font-face {
+      font-family: 'Lato';
+      font-style: normal;
+      font-weight: 400;
+      src: local('Lato Regular'), local('Lato-Regular'), url(https://fonts.gstatic.com/s/lato/v11/UyBMtLsHKBKXelqf4x7VRQ.woff2) format('woff2');
+      unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
+    }
+    /* latin */
+    @font-face {
+      font-family: 'Lato';
+      font-style: normal;
+      font-weight: 400;
+      src: local('Lato Regular'), local('Lato-Regular'), url(https://fonts.gstatic.com/s/lato/v11/1YwB1sO8YE1Lyjf12WNiUA.woff2) format('woff2');
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+    }
+    body, h1, h2, h3, h4, h5, h6 {
+      font-family: "Lato", Arial, sans-serif;
+    }
+    .site-header .cellpd {
+      margin: 0 0 1rem 0;
+      padding: 1rem;
+    }
+
+    .site-header .celllogin {
+      margin: 0 0 1rem 0;
+      padding: 1rem;
+    }
+
+    .site-header .nav-signin {
+      background: #3a060d;
+      border-radius: 4px;
+    }
+
+    .primary-color-bg {
+      background: #3a060d;
+    }
+
+    .primary-color a {
+      color: #3a060d;
+    }
+
+    .primary-color-bg:hover {
+      background: #860e1e;
+    }
+
+    .loginbtn {
+      border-radius: 4px;
+    }
+
+    .z30-sticky {
+      z-index: 30;
+    }
+
+    .site-header a.nav-signin + .button {
+      background: #f9f9f9;
+      color: #333;
+    }
+
+    .cellpd .button {
+      background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAWCAYAAADEtGw7AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2dpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNS1jMDE0IDc5LjE1MTQ4MSwgMjAxMy8wMy8xMy0xMjowOToxNSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0idXVpZDpjOWE1ODU2Ny0wNDUxLWU4NGYtODRmZC0wNTVhNjk2NGMyZWUiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6MjdCQzI4Qzk1QTAxMTFFNEI4OTNENkQxRUIwMzVDQTciIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MjdCQzI4Qzg1QTAxMTFFNEI4OTNENkQxRUIwMzVDQTciIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIChXaW5kb3dzKSI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOjZFNEVBMkUzNEIyMDY4MTE4MjJBODA0MTI0MTg1QzFFIiBzdFJlZjpkb2N1bWVudElEPSJ1dWlkOmM5YTU4NTY3LTA0NTEtZTg0Zi04NGZkLTA1NWE2OTY0YzJlZSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PhNGme4AAAHESURBVHjatJVNKERRGIZn0ITUZCNJucrvlo1SUgoLdiRjIUmShURKU5QoM2vF2i2slJCQZCPKwooU0vgpLGT8pJGf9+g9dZo593Zv+OrpnJl77nu/853vvtdrmqbnPyLJwZp8MAr2wC34ANdgGbQDn+6mFBvBZDAOBjXrckgDH9oFtpwIp4NFUMffZ8Bk1lGQB+pBK3e0Djq45ie8FjWe402fYASEwbtmnQHmQQWIgVqwY1VjmYmIXjBhISriAtSAfdZ6WlZBJxzkuAJmHBzuK2hjxqWgRSecBSo5D7voLnEGC5w36YTLRd3BE9h12bqbHMt0wpkcb9ivbuKSo18n/KZedBnynqhO+IRjNsh1KSzP5lwnfASuOO90IZoKApyv6oS/lBYTr3KxQ+Ex7vAZzFr18THHDLDG3rSLISYhYpJGlSBs8Omqsx3QjAqV/318Q7dBiC26ROEEE2qkifg1hhQkj+CBzqbapShfn9qiMuMAn+iP65BmMCxPmtcNigqRDVANevhKJ9hmN7cj455OFVFqVwBKQBq4A4fcgcfO6EV2VZzHmGkkbu0pcRRSeAC8gCIwJT31NyGFhen0/+XH9FuAAQAUSF3VtJGVtwAAAABJRU5ErkJggg==) center center no-repeat, #3a060d;
+      color: #fff;
+    }
+
+    .cellpd .inputsearch {
+      box-shadow: none;
+      border: none;
+      background-color: rgba(0, 0, 0, 0);
+      border-bottom: 1px solid #a3a3a3;
+    }
+
+    .top-nav {
+      background: #000;
+      padding: 1.375rem 0;
+    }
+
+    .top-nav.shrink {
+      padding: 0;
+    }
+
+    .top-nav li {
+      transform: skewX(150deg);
+      transition: all 0.2s ease-in-out 0s;
+    }
+
+    .top-nav li a {
+      color: #fff;
+      transform: skewX(-150deg);
+    }
+
+    .top-nav li:hover {
+      background: #3a060d;
+    }
+
+    .mt1r {
+      margin-top: 1rem;
+    }
+
+    .mb1r {
+      margin-bottom: 1rem;
+    }
+
+    .striped {
+      background: rgba(247,246,246,0.7);
+      padding: 0 0 0.9375rem;
+    }
+
+    .item .inner-item {
+      display: inline-block;
+      position: relative;
+      max-width: 100%;
+      vertical-align: middle;
+      overflow: hidden;
+      -webkit-transform: translateZ(0);
+      margin:0;
+    }
+
+    .inner-item .item-desc {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 1.25rem;
+      color: #fff;
+      background: rgba(0, 0, 0, 0.7);
+      transition: all 0.2s linear 0s;
+    }
+
+    .inner-item .item-desc:hover {
+      background: transparent;
+    }
+
+    .inner-item .item-desc p {
+      position: absolute;
+      top: 0;
+    }
+
+    .inner-item .item-desc .seemore {
+      color: #fff;
+      padding: 0.5rem 1.25rem;
+      background: #333;
+      opacity: 0.75;
+      display: inline-block;
+      position: absolute;
+      bottom: 0.9375rem;
+      right: 0.9375rem;
+      cursor: pointer;
+      z-index: 20;
+      border-radius: 4px;
+      border: 2px solid #fff;
+    }
+
+    .site-footer {
+      padding: 1.375rem 0;
+      background: #3a060d;
+    }
+
+    .site-footer h3 {
+      color: #fff;
+      font-size: 1.5rem;
+    }
+
+    .site-footer .vertical a {
+      color: #999;
+      transition: all 0.2s ease-in-out 0s;
+    }
+
+    .site-footer .vertical a:hover {
+      color: #fff;
+    }
+
+    .itemblock .columns .callout {
+      box-shadow:0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
+      border: none;
+    }
+
+    .bdr4px {
+      border-radius: 4px;
+    }
+
+    /* #overrides */
+    .orbit-previous,
+    .orbit-next {
+      background: rgba(0, 0, 0, 0.5);
+    }
+    /* #media queries */
+    @media screen and (min-width: 40rem) {
+      .item:first-child,
+      .item:last-child {
+        padding: 0;
+      }
+
+     .inner-item .item-desc p {
+        top: 50%;
+      }
+    }
+    </style>
+  </head>
+  <body>
+    <div class="off-canvas-wrapper">
+      <div class="off-canvas-wrapper-inner" data-off-canvas-wrapper>
+        <div class="off-canvas position-left" id="offcanvas" data-off-canvas>
+          <ul class="menu vertical">
+                  <li><a href="#">Our Brands</a></li>
+                  <li><a href="#">Health &amp; Nutrition</a></li>
+                  <li><a href="#">Beauty</a></li>
+                  <li><a href="#">Clothes</a></li>
+                  <li><a href="#">Home Store</a></li>
+                  <li><a href="#">Electronics</a></li>
+                  <li><a href="#">Partner Stores</a></li>
+                  <li><a href="#">All Departments</a></li>
+                </ul>
+          <button class="close-button" aria-label="Close menu" type="button" data-close>
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="offf-canvas-content" data-off-canvas-content>
+          <div class="title-bar show-for-small-only">
+            <div class="title-bar-left">
+              <button class="menu-icon" type="button" data-open="offcanvas"></button>
+              <span class="title-bar-title">Takraexpress</span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="small-12 medium-12 large-12 columns">
+              <div class="float-right">
+                <p>
+                  <small class="primary-color"><a href="#">official website</a> | <a href="#">sign up to our newsletter</a> | <a href="#">get in contact</a></small></p>
+              </div>
+            </div>
+          </div>
+          <header class="site-header show-for-large" role="banner">
+            <div class="row">
+              <div class="small-12 medium-4 large-3 columns">
+                <h1>Takraexpress</h1>
+              </div>
+              <div class="small-12 medium-4 large-6 columns">
+                <form>
+                  <div class="cellpd">
+                    <div class="input-group">
+                      <label class="show-for-sr" for="searchitem">Search</label>
+                      <input class="input-group-field inputsearch" type="search" id="searchitem" placeholder="Find a dealer, model or code..." required>
+                      <div class="input-group-button">
+                        <button class="button" type="submit">
+                          <span class="invisible">Go</span>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+              <div class="small-12 medium-4 large-3 columns">
+                <nav class="float-right celllogin">
+                  <a href="#" aria-label="Sign Up" class="button nav-signin" role="button">Sign Up</a>
+                  <a href="#" aria-label="Log In" class="button" data-open="exampleModal1" role="button">Log In</a>
+                </nav>
+              </div>
+            </div>
+          </header>
+          <div class="reveal bdr4px" id="exampleModal1" data-reveal>
+            <div class="row">
+              <div class="small-12 medium-12 large-12 columns">
+                <h1 class="text-center">Login</h1>
+                <label>Username
+                  <input type="text" placeholder="Username" required>
+                </label>
+                <label>Password
+                  <input type="password" placeholder="Password" required>
+                </label>
+                <button class="button float-center primary-color-bg loginbtn">Sign in to your account</button>
+                <p>New here? <a href="#">Create an account</a></p>
+              </div>
+            </div>
+          </div>
+          <div data-sticky-container class="z30-sticky mb1r" id="menusticky">
+            <nav class="top-nav show-for-medium sticky" data-sticky data-margin-top="0" style="width:100%" data-top-anchor="menusticky:top">
+              <div class="row">
+                <div class="small-12 medium-12 large-12 columns">
+                  <ul class="menu">
+                    <li><a href="#">Trakaexpress</a></li>
+                    <li><a href="#">Health &amp; Nutrition</a></li>
+                    <li><a href="#">Beauty</a></li>
+                    <li><a href="#">Clothes</a></li>
+                    <li><a href="#">Home Store</a></li>
+                    <li><a href="#">Electronics</a></li>
+                    <li><a href="#">Partner Stores</a></li>
+                    <li><a href="#">All Departments</a></li>
+                  </ul>
+                </div>
+              </div>
+            </nav>
+          </div>
+
+          <section class="striped">
+            <div class="row">
+              <div class="small-12 medium-12 large-12 columns">
+                <div class="orbit" role="region" aria-label="Slide Item" data-orbit>
+                  <ul class="orbit-container">
+                    <button class="orbit-previous"><span class="show-for-sr">Previous Slide</span>&#9664;&#xFE0E;</button>
+                    <button class="orbit-next"><span class="show-for-sr">Next Slide</span>&#9654;&#xFE0E;</button>
+                    <li class="is-active orbit-slide">
+                      <figure class="orbit-image">
+                        <img src="img/xSwimmingPool_CAG_Carousel_desktop_1920x480.jpg" class="show-for-large" alt="Swimming Pool">
+                        <img src="img/xSwimmingpool_CAG_Carousel_tablet_1150x430.jpg" class="show-for-medium-only" alt="Swimming Pool">
+                        <img src="img/xSwimmingpool_CAG_Carousel_mobile_736x280.jpg" class="show-for-small-only" alt="Swimming Pool">
+                        <figcaption class="orbit-caption">Stretch out and soak in the sun at our rooftop pool before your flight.</figcaption>
+                      </figure>
+                    </li>
+                    <li class="orbit-slide">
+                      <figure class="orbit-image">
+                        <img src="img/x5,P20Instagram-worth,P20spots,P20at,P20Changi,P20Airport-Desktop.jpg" alt="Sunflower">
+                        <figcaption class="orbit-caption">Strike a pose at these stunning Instagram-worthy spots you can find at Changi!</figcaption>
+                      </figure>
+                    </li>
+                    <li class="orbit-slide">
+                      <figure class="orbit-image">
+                        <img src="img/xChangi_Banner_Xmas_desktop_1920x480.jpg" alt="Christmas">
+                        <figcaption class="orbit-caption">Enjoy big discounts on your gift shopping at iShopChangi.com</figcaption>
+                      </figure>
+                    </li>
+                    <li class="orbit-slide">
+                      <figure class="orbit-image">
+                        <img src="img/xLittle,P20Guilin,P20-,P20CA.com,P20Carousel,P20,28Desktop,29.jpg" alt="Guilin">
+                        <figcaption class="orbit-caption">Watch a movie under the stars and even visit an abandoned estate!</figcaption>
+                      </figure>
+                    </li>
+                    <li class="orbit-slide">
+                      <figure class="orbit-image">
+                        <img src="img/xskytrax_2016_1920x480_01.jpg" alt="Airport">
+                        <figcaption class="orbit-caption">Vote for your favourite airport now</figcaption>
+                      </figure>
+                    </li>
+                  </ul>
+                  <nav class="orbit-bullets">
+                    <button class="is-active" data-slide="0"><span class="show-for-sr">First slide details.</span><span class="show-for-sr">Current Slide</span></button>
+                    <button data-slide="1"><span class="show-for-sr">Second slide details.</span></button>
+                    <button data-slide="2"><span class="show-for-sr">Third slide details.</span></button>
+                    <button data-slide="3"><span class="show-for-sr">Fourth slide details.</span></button>
+                    <button data-slide="4"><span class="show-for-sr">Fifth slide details.</span></button>
+                  </nav>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="striped">
+            <div class="row">
+              <div class="small-12 medium-3 large-8 columns">
+                <div class="row small-up-2 medium-up-2 large-up-2">
+                  <div class="columns">
+                    <img src="img/MSFT-Office-BGCM-300x250-Save--30-10HJb._V525635848.jpg" alt="MS Officce">
+                  </div>
+                  <div class="columns">
+                    <img src="img/dealsweek-short._CB526204567.png" alt="Black Friday">
+                  </div>
+                </div>
+              </div>
+              <div class="small-12 medium-9 large-4 columns">
+                <div class="row small-up-2 medium-up-2 large-up-2">
+                  <div class="columns">
+                    <img src="img/unrec._CB526777111.png" alt="Home">
+                    <figcaption class="text-center">Holiday Gifts</figcaption>
+                  </div>
+                  <div class="columns">
+                    <img src="img/unrec_circle_elec._CB526291924.png" alt="Electronics">
+                    <figcaption class="text-center">Electronics</figcaption>
+                  </div>
+                  <div class="columns">
+                    <img src="img/unrec_circle_home._CB526291925.png" alt="Gift">
+                    <figcaption class="text-center">Home</figcaption>
+                  </div>
+                  <div class="columns">
+                    <img src="img/unrec_circle_toys._CB526291927.png" alt="Toy">
+                    <figcaption class="text-center">Toys</figcaption>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="small-12 medium-12 large-12 columns">
+                <div class="small-12 medium-6 large-6 columns item">
+                  <figure class="inner-item">
+                    <img src="img/soccer.jpg" alt="Soccer">
+                    <figcaption class="item-desc">
+                      <p>If you notice that you or somebody you know may be gambling excessively, call the National Problem Gambling Helpline today at 1800-6-668-668.</p>
+                      <a href="#" class="seemore">See more</a>
+                    </figcaption>
+                  </figure>
+                </div>
+                <div class="small-12 medium-6 large-6 columns item">
+                  <figure class="inner-item">
+                    <img src="img/lottery-key-visual.jpg" alt="Lottery">
+                    <figcaption class="item-desc">
+                      <p>This notice is applicable to you if you were a Singapore Pools Account Gold/Platinum customer.</p>
+                      <a href="#" class="seemore">See more</a>
+                    </figcaption>
+                  </figure>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="striped" role="itemfreq">
+            <div class="row">
+              <div class="small-12 medium-12 large-12 columns"><h2>Promotions</h2>
+                <div class="row small-up-3 medium-up-3 large-up-4 itemblock" data-equalizer data-equalize-by-row="true">
+                  <div class="columns">
+                    <div class="callout">
+                      <a href="#"><img src="img/xlocal-food.jpg" alt="Local food"></a>
+                      <div class="caption text-left">
+                        <h3>It's a feast at Changi Airport</h3>
+                        <p>We offer a variety of dining options, suitable for all budgets.</p>
+                        <a href="#">Find out more</a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="columns">
+                    <div class="callout">
+                      <a href="#"><img src="img/xlocal-food.jpg" alt="Local food"></a>
+                      <div class="caption text-left">
+                        <h3>It's a feast at Changi Airport</h3>
+                        <p>We offer a variety of dining options, suitable for all budgets.</p>
+                        <a href="#">Find out more</a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="columns">
+                    <div class="callout">
+                      <a href="#"><img src="img/xlocal-food.jpg" alt="Local food"></a>
+                      <div class="caption text-left">
+                        <h3>It's a feast at Changi Airport</h3>
+                        <p>We offer a variety of dining options, suitable for all budgets.</p>
+                        <a href="#">Find out more</a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="columns">
+                    <div class="callout">
+                      <a href="#"><img src="img/xlocal-food.jpg" alt="Local food"></a>
+                      <div class="caption text-left">
+                        <h3>It's a feast at Changi Airport</h3>
+                        <p>We offer a variety of dining options, suitable for all budgets.</p>
+                        <a href="#">Find out more</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <footer class="site-footer" role="contentinfo">
+            <div class="row">
+              <div class="small-12 medium-3 large-3 columns">
+                <h3>Corporate info</h3>
+                <ul class="menu vertical">
+                  <li><a href="#">Corporate governance policies</a></li>
+                  <li><a href="#">Information for investors</a></li>
+                  <li><a href="#">Invitation to tender</a></li>
+                </ul>
+              </div>
+              <div class="small-12 medium-3 large-3 columns">
+                <h3>Media</h3>
+                <ul class="menu vertical">
+                  <li><a href="#">News releases</a></li>
+                  <li><a href="#">Multimedia library</a></li>
+                  </ul>
+              </div>
+              <div class="small-12 medium-3 large-3 columns small-offset-0 medium-offset-3 large-offset-3">
+                <h3>Support</h3>
+                <ul class="menu vertical">
+                  <li><a href="#">Contact us</a></li>
+                  <li><a href="#">Feedback</a></li>
+                  <li><a href="#">FAQs</a></li>
+                  <li><a href="#">Privacy policy</a></li>
+                  <li><a href="#">Terms and conditions</a></li>
+                </ul>
+              </div>
+            </div>
+          </footer>
+        </div>
+      </div>
+    </div>
+
+    <script src="js/vendor/jquery.js"></script>
+    <script src="js/vendor/what-input.js"></script>
+    <script src="js/vendor/foundation.js"></script>
+    <script src="js/app.js"></script>
+    <script>
+    $(document).ready(function() {
+      $('.top-nav').on('sticky.zf.stuckto:top', function(){
+        $(this).addClass('shrink');
+      }).on('sticky.zf.unstuckfrom:top', function(){
+        $(this).removeClass('shrink');
+      })
+    });
+    </script>
+  </body>
+</html>

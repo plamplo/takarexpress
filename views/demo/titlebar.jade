@@ -1,72 +1,120 @@
 block titlebar
   //- small view
   div.title-bar.show-for-small-only
-    div.title-bar-left
-      button.menu-icon(type="button" data-open="offcanvas")
+    .title-bar-left
+      button.menu-icon(type='button', data-open='offcanvas')
       span.title-bar-title(onclick="window.location.href='/'" style="font-size:2em;") Takraexpress
-    div.title-bar-right
-      button.fa.fa-ellipsis-v(style="font-size:2em;")
-  div.show-for-small-only.small-12.columns
-    br
-    form
-      .input-group
-        label.show-for-sr(for='searchitem') Search
-        input#searchitem.input-group-field(type='search')
-        .input-group-button.searchbar
-          button.button(type='submit') Go
+  div.row
+    .small-12.medium-12.large-12.columns
+      .float-right
+        p
+          small.primary-color
+            a(href='#') official website |
+            a(href='#') sign up to our newsletter |
+            a(href='#') get in contact
+
+  //-div.title-bar.show-for-small-only
+  //-  div.title-bar-left
+  //-    button.menu-icon(type="button" data-open="offcanvas")
+  //-    span.title-bar-title(onclick="window.location.href='/'" style="font-size:2em;") Takraexpress
+  //-  div.title-bar-right
+  //-    button.fa.fa-ellipsis-v(style="font-size:2em;")
+  //-.show-for-small-only.small-12.columns
+  //-  br
+  //-  form
+  //-    .input-group
+  //-      label.show-for-sr(for='searchitem') Search
+  //-      input#searchitem.input-group-field(type='search')
+  //-      .input-group-button.searchbar
+  //-        button.button(type='submit')
+  //-.row
+  //-  .small-12.medium-12.large-12.columns
+  //-    .float-right
+  //-      p
+  //-        small.primary-color
+  //-          a(href='#') official website
+  //-          |
+  //-          a(href='#') sign up to our newsletter
+  //-          |
+  //-          a(href='#') get in contact
 
   //- desktop view
   header.site-header.show-for-large(role='banner')
     .row
-      .large-4.columns
-        h1(onclick="window.location.href='/'") Takraexpress
-      .large-5.columns(style="margin-top:17")
+      .small-12.medium-4.large-3.columns
+        h1 Takraexpress
+      .small-12.medium-4.large-6.columns
         form
-          .input-group
-            label.show-for-sr(for='searchitem') Search
-            input#searchitem.input-group-field(type='search')
-            .input-group-button.searchbar
-              button.button(type='submit') Search
-      .large-3.columns(style="margin-top:17")
-        .button-group.float-right
-          a.button(data-toggle='login-dropdown' style="background:#043657") Login
-          #login-dropdown.dropdown-pane(data-dropdown='', data-hover='true', data-hover-pane='true')
-            form
-              .row
-                .small-12.medium-12.large-12.columns
-                  label
-                    | Username
-                    input(type='text', placeholder='Startrek', required='')
-                  label
-                    | Password
-                    input(type='password', placeholder='Into the Darkness', required='')
-              button.button(type='submit' style="background:#043657") Login
-          a.button(data-toggle='cart-dropdown' style="background:#043657") Cart
-          #cart-dropdown.dropdown-pane(data-dropdown='', data-hover='true', data-hover-pane='true' style="background:#043657")
-            form
-              .row
-                .small-12.medium-12.large-12.columns
-                  h4 Nothing here!
-          a.button(style="background:#043657") Language
-          
-  //- table and desktop view
-  nav.top-nav.show-for-medium
+          .cellpd
+            .input-group
+              label.show-for-sr(for='searchitem') Search
+              input#searchitem.input-group-field.inputsearch(type='search', placeholder='Find a dealer, model or code...', required='')
+              .input-group-button
+                button.button(type='submit')
+                  span.invisible Go
+      .small-12.medium-4.large-3.columns
+        nav.float-right.celllogin
+          a.button.nav-signin(href='#', aria-label='Sign Up', role='button') Sign Up
+          a.button(href='#', aria-label='Log In', data-open='exampleModal1', role='button') Log In
+  #exampleModal1.reveal.bdr4px(data-reveal='')
     .row
       .small-12.medium-12.large-12.columns
-        ul.menu
-          li
-            a(onclick="window.location.href='/'") Trakaexpress
-          li
-            a(href='#') Health & Nutrition
-          li
-            a(href='#') Beauty
-          li
-            a(href='#') Clothes
-          li
-            a(href='#') Home Store
-          li
-            a(href='#') Electronics
-          li
-            a(href='#') Partner Stores
-          li
-            a(href='#') All Departments
+        h1.text-center Login
+        label
+          | Username
+          input(type='text', placeholder='Username', required='')
+        label
+          | Password
+          input(type='password', placeholder='Password', required='')
+        button.button.float-center.primary-color-bg.loginbtn Sign in to your account
+        p
+          | New here?
+          a(href='#') Create an account
+
+  //-header.site-header.show-for-large(role='banner')
+  //-  .row
+  //-    .small-12.medium-4.large-4.columns
+  //-      h1(onclick="window.location.href='/'") Takraexpress
+  //-    .small-12.medium-4.large-5.columns(style="margin-top:17")
+  //-      form
+  //-        .cellpd
+  //-          .input-group
+  //-            label.show-for-sr(for='searchitem') Search
+  //-            input#searchitem.input-group-field.inputsearch(type='search', placeholder='Find a dealer, model or code...', required='')
+  //-            .input-group-button.searchbar
+  //-              button.button(type='submit')
+  //-                span
+  //-    .small-12.medium-4.large-3.columns(style="margin-top:17")
+  //-      nav.float-right.celllogin
+  //-        a.button.nav-signin(href='#', aria-label='Sign Up', data-open='exampleModal1', role='button' style="background:#043657") Sign Up
+  //-        a.button(href='#', aria-label='Log In', role='button' style="background:#043657") Log In
+  //-#exampleModal1.reveal(data-reveal='')
+  //-  h1 Login
+  //-  p.lead Your couch. It is mine.
+  //-  p I'm a cool paragraph that lives inside of an even cooler modal. Wins!
+  //-  button.close-button(data-close='', aria-label='Close modal', type='button')
+  //-    span(aria-hidden='true') ×
+
+
+  //- table and desktop view
+  #menusticky.z30-sticky.mb1r(data-sticky-container='')
+    nav.top-nav.show-for-medium.sticky(data-sticky='', data-margin-top='0', style='width:100%')
+      .row
+        .small-12.medium-12.large-12.columns
+          ul.menu
+            li
+              a(onclick="window.location.href='/'") Trakaexpress
+            li
+              a(href='#') Health & Nutrition
+            li
+              a(href='#') Beauty
+            li
+              a(href='#') Clothes
+            li
+              a(href='#') Home Store
+            li
+              a(href='#') Electronics
+            li
+              a(href='#') Partner Stores
+            li
+              a(href='#') All Departments
