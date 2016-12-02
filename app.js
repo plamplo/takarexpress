@@ -92,13 +92,15 @@ var herokuapp = "http://takraexpress.herokuapp.com";
 
 app.post('/login', function(req, res){
   var userID = { email : req.body.email, password : req.body.pass };
-  JSON.stringify(userID);
+  // JSON.stringify(userID);
+  console.log(userID);
   request.post(
     herokuapp+'/auth/sign_in',
-    JSON.stringify(userID),
+    { json: userID },
     function (error, response, body) {
+      console.log(body);
         if (!error && response.statusCode == 200) {
-
+          console.log(response);
         }else{
           res.send("error");
         }
