@@ -54,7 +54,7 @@ exports.checking = function(req, res){
           var data = JSON.parse(body);
           var product = data.products;
           // console.log(product)
-          res.render('producer/index', { title: 'รายละเอียดผลิตภัณฑ์', user:data, product: product });
+          res.render('producer/index', { title: 'รายการผลิตภัณฑ์', user:data, product: product });
       }else{
         console.log("fuck to");
       }

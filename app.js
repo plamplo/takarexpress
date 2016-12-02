@@ -6,7 +6,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
-// var request = require('request');
+var request = require('request');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
@@ -84,20 +84,29 @@ app.get('/product/search_detail/:productID', mockdata.search_detail); //search p
 app.get('/product/search_producer/:producerID', mockdata.search_producer); //search product data by producer id
 app.get('/product/search_detail_producer/:producerID', mockdata.search_detail_producer); //search product detail by producer id
 
-app.post('/producer', producer.checking);
-// module.exports = app;
-//admin login
-//app.get('/admin', admin.login);
-//app.get('/admin/index', admin.index);
-// module.exports = app;
-
-
-//////////////////////////
-// app.engine('html', require('ejs').renderFile);
-
 app.use(session({secret: 'ssshhhhh'}));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
+
+var herokuapp = "http://takraexpress.herokuapp.com";
+
+app.post('/login', function(req, res){
+  var userID = { email : req.body.email, password : req.body.pass };
+  JSON.stringify(userID);
+  request.post(
+    herokuapp+'/auth/sign_in',
+    JSON.stringify(userID),
+    function (error, response, body) {
+        if (!error && response.statusCode == 200) {
+
+        }else{
+          res.send("error");
+        }
+    }
+  );
+});
+//////////////////////////
+// app.engine('html', require('ejs').renderFile);
 // var sess;
 //
 // app.get('/',function(req,res){
