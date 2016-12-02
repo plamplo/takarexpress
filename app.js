@@ -5,6 +5,7 @@ var favicon = require('static-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var session = require('express-session');
 // var request = require('request');
 
 var routes = require('./routes/index');
@@ -68,11 +69,13 @@ app.listen(8080, function() {
 app.get('/', routes.index);
 app.get('/product', routes.productCatagory);
 app.get('/product/:productID', routes.productDetail);
+
 // producer page
 app.get('/producer/:producerID', producer.index);
 app.get('/producer/:producerID/list', producer.list);
 app.get('/producer/:producerID/product/:productID', producer.detail);
 app.get('/producer/:producerID/productadd', producer.add);
+
 // mock data
 app.get('/product/list/all', mockdata.listAll);
 app.get('/product/list/all_detail', mockdata.listAll_detail);
@@ -81,6 +84,7 @@ app.get('/product/search_detail/:productID', mockdata.search_detail); //search p
 app.get('/product/search_producer/:producerID', mockdata.search_producer); //search product data by producer id
 app.get('/product/search_detail_producer/:producerID', mockdata.search_detail_producer); //search product detail by producer id
 
+app.post('/producer', producer.checking);
 // module.exports = app;
 //admin login
 //app.get('/admin', admin.login);
@@ -89,56 +93,53 @@ app.get('/product/search_detail_producer/:producerID', mockdata.search_detail_pr
 
 
 //////////////////////////
-app.engine('html', require('ejs').renderFile);
+// app.engine('html', require('ejs').renderFile);
 
 app.use(session({secret: 'ssshhhhh'}));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
-var sess;
-
-app.get('/',function(req,res){
-sess = req.session;
-//Session set when user Request our app via URL
-if(sess.email) {
-/*
-* This line check Session existence.
-* If it existed will do some action.
-*/
-    res.redirect('/admin');
-}
-else {
-    res.render('admin/login');
-}
-});
-
-app.post('/login',function(req,res){
-  sess = req.session;
-//In this we are assigning email to sess.email variable.
-//email comes from HTML page.
-  sess.email=req.body.email;
-  res.end('done');
-});
-
-app.get('/admin',function(req,res){
-  sess = req.session;
-if(sess.email) {
-res.write('
-<h1>Hello '+sess.email+'</h1>
-');
-res.end('<a href="+">Logout</a>');
-} else {
-    res.write('
-     <h1>Please login first.</h1>
-    ');
-    res.end('<a href="+">Login</a>');
-}
-});
-
-app.get('/logout',function(req,res){
-req.session.destroy(function(err) {
-  if(err) {
-    console.log(err);
-  } else {
-    res.redirect('/');
-  }
-});
+// var sess;
+//
+// app.get('/',function(req,res){
+// sess = req.session;
+// //Session set when user Request our app via URL
+// if(sess.email) {
+// /*
+// * This line check Session existence.
+// * If it existed will do some action.
+// */
+//     res.redirect('/admin');
+// }
+// else {
+//     res.render('admin/login');
+// }
+// });
+//
+// app.post('/login',function(req,res){
+//   sess = req.session;
+// //In this we are assigning email to sess.email variable.
+// //email comes from HTML page.
+//   sess.email=req.body.email;
+//   res.end('done');
+// });
+//
+// app.get('/admin',function(req,res){
+//   sess = req.session;
+// if(sess.email) {
+// res.write('<h1>Hello '+sess.email+'</h1>');
+// res.end('<a href="+">Logout</a>');
+// } else {
+//     res.write(' <h1>Please login first.</h1>  ');
+//     res.end('<a href="+">Login</a>');
+// }
+// });
+// }
+// app.get('/logout',function(req,res){
+// req.session.destroy(function(err) {
+//   if(err) {
+//     console.log(err);
+//   } else {
+//     res.redirect('/');
+//   }
+// });
+// }

@@ -10,14 +10,14 @@ block content
           })
         });
 
-        function check_text_length(text, index){
-          if(text.length < 20){
-            console.log("product_name"+index);
-            document.getElementById("product_name_"+index).innerHTML = text;
-          }else{
-            document.getElementById("product_name_"+index).innerHTML = text.substr(0, 22)+"...";
-          }
-        }
+        //- function check_text_length(text, index){
+        //-   if(text.length < 20){
+        //-    console.log("product_name"+index);
+        //-    document.getElementById("product_name_"+index).innerHTML = text;
+        //-  }else{
+        //-    document.getElementById("product_name_"+index).innerHTML = text.substr(0, 22)+"...";
+        //-  }
+        //- }
       include menutab
       div.offf-canvas-content(data-off-canvas-content)
         include titlebar
@@ -25,25 +25,25 @@ block content
         h1(style="margin-top:5px;") รายการผลิตภัณฑ์
         section.striped(role='itemfreq' margin-top: 5px;)
             .row.small-up-1.medium-up-2.large-up-3(data-equalizer='', data-equalize-by-row='true')
-              - each item, i in data
+              - each item, i in product
                 .columns
                   .callout
                     center
                       a(href='#')
-                        img(src=item.product_pic, alt='Local food' style="width:100%; height:200px" onload="check_text_length('#{item.product_name}', #{i})")
+                        img(src='/images/mockup/soccer.jpg', alt='Local food' style="width:100%; height:200px" onload="check_text_length('#{item.product_name}', #{i})")
                     .caption.text-left
                       br
                       .row.columns
-                        p(id="product_name_#{i}")
-                      .row
-                        .small-4.medium-4.large-4.columns
-                          h4(style="margin-top:0px;") จำนวน
-                        .small-2.medium-2.large-2.columns(style="margin-top:-5px;")
-                          a.button.alert -
-                        .small-2.medium-2.large-2.columns
-                          h4(style="margin-top:0px;")= item.product_stock
-                        .small-3.medium-3.large-3.columns(style="margin-top:-5px;")
-                          a.button.success +
+                        p= item.name
+                      //- .row
+                      //-  .small-4.medium-4.large-4.columns
+                      //-    h4(style="margin-top:0px;") จำนวน
+                      //-  .small-2.medium-2.large-2.columns(style="margin-top:-5px;")
+                      //-    a.button.alert -
+                      //-  .small-2.medium-2.large-2.columns
+                      //-    h4(style="margin-top:0px;")= item.product_stock
+                      //-  .small-3.medium-3.large-3.columns(style="margin-top:-5px;")
+                      //-    a.button.success +
                       .row
                         .columns.small-offset-7
                           a.button บันทึกค่า

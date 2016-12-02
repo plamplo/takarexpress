@@ -1,18 +1,33 @@
 block titlebar
   //- small view
-  div.title-bar.show-for-small-only
+  //- v1.0.2
+  .title-bar.show-for-small-only
     .title-bar-left
       button.menu-icon(type='button', data-open='offcanvas')
-      span.title-bar-title(onclick="window.location.href='/'" style="font-size:2em;") Takraexpress
-  div.row
+      span.title-bar-title Takraexpress
+  nav.row.expanded.global-nav
     .small-12.medium-12.large-12.columns
-      .float-right
-        p
-          small.primary-color
-            a(href='#') official website |
-            a(href='#') sign up to our newsletter |
-            a(href='#') get in contact
-
+      ul.menu.float-right
+        li
+          a(href='#') Track Order
+        li
+          a(href='#') Help
+        li
+          a(href='#') Newsletter Sign Up
+  //- v1.0.1
+  //- div.title-bar.show-for-small-only
+  //-  .title-bar-left
+  //-    button.menu-icon(type='button', data-open='offcanvas')
+  //-    span.title-bar-title(onclick="window.location.href='/'" style="font-size:2em;") Takraexpress
+  //- div.row
+  //-  .small-12.medium-12.large-12.columns
+  //-    .float-right
+  //-      p
+  //-        small.primary-color
+  //-          a(href='#') official website |
+  //-          a(href='#') sign up to our newsletter |
+  //-          a(href='#') get in contact
+  //- v1.0.0
   //-div.title-bar.show-for-small-only
   //-  div.title-bar-left
   //-    button.menu-icon(type="button" data-open="offcanvas")
@@ -39,11 +54,13 @@ block titlebar
   //-          a(href='#') get in contact
 
   //- desktop view
+  //- v1.0.2
   header.site-header.show-for-large(role='banner')
-    .row
-      .small-12.medium-4.large-3.columns
-        h1 Takraexpress
-      .small-12.medium-4.large-6.columns
+    .row()
+      .small-12.medium-4.large-3.columns(style="margin-top:15px")
+        img(src='/images/mockup/takra.png', alt='takra logo')
+        h1.show-for-sr Takraexpress
+      .small-12.medium-4.large-6.columns(style="padding-top:25px")
         form
           .cellpd
             .input-group
@@ -52,25 +69,59 @@ block titlebar
               .input-group-button
                 button.button(type='submit')
                   span.invisible Go
-      .small-12.medium-4.large-3.columns
+      .small-12.medium-4.large-3.columns(style="padding-top:25px")
         nav.float-right.celllogin
-          a.button.nav-signin(href='#', aria-label='Sign Up', role='button') Sign Up
+          a.button.nav-signin.primary-color-bg.bdr4px(href='#', aria-label='Sign Up', role='button') Sign Up
           a.button(href='#', aria-label='Log In', data-open='exampleModal1', role='button') Log In
   #exampleModal1.reveal.bdr4px(data-reveal='')
     .row
       .small-12.medium-12.large-12.columns
         h1.text-center Login
+        #error
         label
           | Username
-          input(type='text', placeholder='Username', required='')
+          input(type='text', placeholder='Username', required='' id="username")
         label
           | Password
-          input(type='password', placeholder='Password', required='')
-        button.button.float-center.primary-color-bg.loginbtn Sign in to your account
+          input(type='password', placeholder='Password', required='' id="password")
+        button.button.float-center.primary-color-bg.bdr4px(onclick="login();") Sign in to your account
         p
           | New here?
           a(href='#') Create an account
 
+  //- v1.0.1
+  //- header.site-header.show-for-large(role='banner')
+  //-  .row
+  //-    .small-12.medium-4.large-3.columns
+  //-      h1 Takraexpress
+  //-    .small-12.medium-4.large-6.columns
+  //-      form
+  //-        .cellpd
+  //-          .input-group
+  //-            label.show-for-sr(for='searchitem') Search
+  //-            input#searchitem.input-group-field.inputsearch(type='search', placeholder='Find a dealer, model or code...', required='')
+  //-            .input-group-button
+  //-              button.button(type='submit')
+  //-                span.invisible Go
+  //-    .small-12.medium-4.large-3.columns
+  //-      nav.float-right.celllogin
+  //-        a.button.nav-signin(href='#', aria-label='Sign Up', role='button') Sign Up
+  //-        a.button(href='#', aria-label='Log In', data-open='exampleModal1', role='button') Log In
+  //- #exampleModal1.reveal.bdr4px(data-reveal='')
+  //-  .row
+  //-    .small-12.medium-12.large-12.columns
+  //-      h1.text-center Login
+  //-      label
+  //-        | Username
+  //-        input(type='text', placeholder='Username', required='')
+  //-      label
+  //-        | Password
+  //-        input(type='password', placeholder='Password', required='')
+  //-      button.button.float-center.primary-color-bg.loginbtn Sign in to your account
+  //-      p
+  //-        | New here?
+  //-        a(href='#') Create an account
+  //- v1.0.0
   //-header.site-header.show-for-large(role='banner')
   //-  .row
   //-    .small-12.medium-4.large-4.columns
@@ -97,13 +148,14 @@ block titlebar
 
 
   //- table and desktop view
-  #menusticky.z30-sticky.mb1r(data-sticky-container='')
-    nav.top-nav.show-for-medium.sticky(data-sticky='', data-margin-top='0', style='width:100%')
+  //- v1.0.2
+  #menusticky.z30-sticky(data-sticky-container='')
+    nav.top-nav.show-for-medium.sticky(data-sticky='', data-margin-top='0', style='width:100%; background: #55000f;', data-top-anchor='menusticky:top')
       .row
         .small-12.medium-12.large-12.columns
           ul.menu
             li
-              a(onclick="window.location.href='/'") Trakaexpress
+              a(href='#') Trakaexpress
             li
               a(href='#') Health & Nutrition
             li
@@ -118,3 +170,26 @@ block titlebar
               a(href='#') Partner Stores
             li
               a(href='#') All Departments
+
+  //- v1.0.1
+  //- #menusticky.z30-sticky.mb1r(data-sticky-container='')
+  //-  nav.top-nav.show-for-medium.sticky(data-sticky='', data-margin-top='0', style='width:100%')
+  //-    .row
+  //-      .small-12.medium-12.large-12.columns
+  //-        ul.menu
+  //-          li
+  //-            a(onclick="window.location.href='/'") Trakaexpress
+  //-          li
+  //-            a(href='#') Health & Nutrition
+  //-          li
+  //-            a(href='#') Beauty
+  //-          li
+  //-            a(href='#') Clothes
+  //-          li
+  //-            a(href='#') Home Store
+  //-          li
+  //-            a(href='#') Electronics
+  //-          li
+  //-            a(href='#') Partner Stores
+  //-          li
+  //-            a(href='#') All Departments

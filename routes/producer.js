@@ -1,7 +1,9 @@
 var link = "http://localhost:8080";
+var herokuapp = "http://takraexpress.herokuapp.com";
 var http = require('request');
 
 exports.index = function(req, res) {
+
   http.get({ url: link+"/product/search_detail_producer/"+req.params.producerID},
     function(error, response, body) {
       if (!error && response.statusCode == 200) {
@@ -40,4 +42,21 @@ exports.detail = function(req, res) {
 
 exports.add = function(req, res) {
   res.render('producer/productAdd', { title: 'เพิ่มผลิตภัณฑ์', producerID: req.params.producerID });
+}
+
+exports.checking = function(req, res){
+  var obj = JSON.parse(req.body.body);
+  http.get({ url: herokuapp+"/api/v1/users/"+obj.id},
+    function(error, response, body) {
+      if (!error && response.statusCode == 200) {
+        // console.log(body);
+          // console.log(body);
+          var data = JSON.parse(body);
+          var product = data.products;
+          // console.log(product)
+          res.render('producer/index', { title: 'รายละเอียดผลิตภัณฑ์', user:data, product: product });
+      }else{
+        console.log("fuck to");
+      }
+    });
 }
